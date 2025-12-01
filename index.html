@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashim Bilal | SQA Engineer Portfolio</title>
+    <style>
+        /* NEW COLOR PALETTE */
+        :root {
+            --primary: #2563eb;     /* Cobalt Blue (Main Brand Color) */
+            --secondary: #14b8a6;   /* Teal (Accent/Highlight Color) */
+            --dark: #1e293b;        /* Dark Slate (Headings) */
+            --light: #ffffff;       /* Pure White (Card/Hero Background) */
+            --bg-gray: #f5f6f8;     /* Very Light Gray (Body Background) */
+            --text-gray: #475569;   /* Darker Text for Readability */
+        }
+
+        /* 1. SMOOTH SCROLLING EFFECT */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-gray); color: var(--dark); line-height: 1.6; }
+
+        /* KEYFRAME for Fade-In Effect */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: var(--light); box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        
+        /* New Nav Underline Hover Effect */
+        .nav-links a { 
+            margin-left: 20px; text-decoration: none; color: var(--dark); font-weight: 500; 
+            position: relative; transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; left: 0; bottom: -5px; 
+            width: 0; height: 2px; background: var(--secondary);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* Hero Section */
+        .hero { 
+            text-align: center; padding: 80px 20px; 
+            background: linear-gradient(180deg, var(--light), #f0f3f7); 
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.02); 
+            animation: fadeIn 1s ease-out;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.25rem; color: var(--text-gray); max-width: 600px; margin: 0 auto 30px auto; }
+        
+        /* Interactive Button Press Effect */
+        .btn { 
+            display: inline-block; padding: 12px 30px; background-color: var(--primary); color: white; 
+            text-decoration: none; border-radius: 5px; font-weight: bold; 
+            transition: all 0.2s ease; 
+        }
+        .btn:hover { background-color: #1d4ed8; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4); }
+        .btn:active {
+            transform: translateY(1px); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        section { padding: 60px 10%; }
+        h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; position: relative; }
+        h2::after { 
+            content: ''; display: block; width: 50px; height: 3px; 
+            background: var(--secondary);
+            margin: 10px auto; 
+        }
+
+        /* Skills Grid */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .skill-card { 
+            background: var(--light); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 4px solid var(--primary); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            animation: fadeIn 1s ease-out 0.3s backwards; 
+        }
+        .skill-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+        }
+        .skill-card h3 { margin-bottom: 10px; }
+        .skill-card ul { list-style: none; padding-left: 0; }
+        .skill-card li { margin-bottom: 5px; color: var(--text-gray); }
+
+        /* Projects (Case Studies) */
+        .project-card { 
+            background: var(--light); margin-bottom: 30px; padding: 30px; border-radius: 10px; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+            border-bottom: 2px dashed #e0e0e0; 
+            padding-bottom: 40px;
+            
+            display: flex; flex-direction: column; gap: 15px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+        .project-card:last-child {
+             border-bottom: none; 
+        }
+        .project-card:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 25px rgba(0,0,0,0.18); 
+        }
+        .project-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+        .project-title { font-size: 1.5rem; font-weight: bold; color: var(--dark); }
+        .project-role { 
+            font-size: 0.9rem; background: #e0e7ff; color: var(--primary); 
+            padding: 5px 10px; border-radius: 20px; 
+        }
+        .tech-stack { font-size: 0.85rem; color: var(--secondary); font-style: italic; margin-bottom: 10px; }
+        
+        .star-method strong { color: var(--dark); }
+        .star-method { color: var(--text-gray); }
+
+        /* Certifications */
+        .cert-section { 
+            background-color: var(--dark); color: white; text-align: center; 
+            border-top: 5px solid var(--secondary);
+        }
+        .cert-section h2 { color: white; }
+        .cert-badge { 
+            display: inline-block; border: 2px solid var(--secondary); 
+            padding: 15px 30px; border-radius: 5px; margin-top: 10px; 
+        }
+
+        /* Contact & Footer */
+        footer { text-align: center; padding: 40px; background: var(--bg-gray); color: var(--text-gray); }
+        .contact-info { margin-bottom: 20px; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            section { padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Hashim Bilal SQA Engineer</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Hashim Bilal</h1>
+        <p>SQA Engineer specializing in Mobile App Testing, Microsoft Power Platform, and Dynamics 365.</p>
+        <a href="mailto:hashimbilal160@gmail.com" class="btn">Hire Me</a>
+        <br><br>
+        <small>📍 Lahore, Pakistan</small>
+    </div>
+
+    <section id="about" style="padding-top: 40px; text-align: center; background-color: var(--light);">
+        <h2>About Me</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: left; padding-top: 10px;" class="about-content">
+            <p style="margin-bottom: 20px; font-size: 1.1rem; animation: fadeIn 1s ease-out 0.3s backwards;">
+                I am a highly focused SQA Engineer with over one year of experience dedicated to driving product stability across complex, multi-platform environments. My expertise goes beyond defect detection; I proactively shape the quality process, from detailed test case design and execution to collaborative contribution within Agile frameworks. Combining the analytical rigor of a BSCS degree with practical experience in high-impact domains like enterprise solutions and public-facing mobile/TV applications, I excel at identifying edge-case defects and ensuring a flawless user experience.
+            </p>
+            <p style="font-size: 1.1rem; color: var(--dark); animation: fadeIn 1s ease-out 0.5s backwards;">
+                My technical foundation is built on mastery of Manual Testing and practical exposure to automation tools such as Selenium and EasyRepro. Crucially, I hold certified expertise in the Microsoft Power Platform and Dynamics 365 (CRM/ERP), enabling me to effectively validate complex business logic, workflows, and system integrations. Whether I am verifying real-time data synchronization for a Smart TV app or guaranteeing the accuracy of vital healthcare algorithms, my singular objective is delivering enhanced test coverage and accelerated, high-quality releases.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>📱 Mobile & Cross-Platform</h3>
+                <ul>
+                    <li>Android & iOS Testing</li>
+                    <li>Smart TV & Tablet Apps</li>
+                    <li>UI/UX Usability Validation</li>
+                    <li>Cross-Device Sync Testing</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>💻 Microsoft Stack</h3>
+                <ul>
+                    <li>Dynamics 365 (CRM/ERP)</li>
+                    <li>Power Platform (Apps/Automate)</li>
+                    <li>Azure DevOps (Bug Tracking)</li>
+                    <li>SharePoint Integration</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🛠 Tools & Automation</h3>
+                <ul>
+                    <li>Jira (Agile Management)</li>
+                    <li>Postman (API Testing)</li>
+                    <li>Appium & Selenium & EasyRepro (Basic)</li>
+                    <li>Data Validation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Case Studies</h2>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Healthcare AI & Triage Systems (CKD/GP Triage)</span>
+                <span class="project-role">Aug 2024 - Aug 2025</span>
+            </div>
+            <div class="tech-stack">Stack: Web, SharePoint, Azure DevOps, Dynamics 365</div>
+            <p class="star-method">
+                <strong>Situation:</strong> Cloud Surge developed critical healthcare tools, including a CKD (Chronic Kidney Disease) detection system and a GP Triage bot for NHS integrations.<br><br>
+                <strong>Task:</strong> Ensure absolute accuracy in medical logic (GFR/BP data analysis) and verify secure patient data handling.<br><br>
+                <strong>Action:</strong> Validated the disease detection logic by creating complex data sets for ACR and GFR values. Tested the bot-based appointment booking system for edge cases (e.g., conflicting appointment times).<br><br>
+                <strong>Result:</strong> Prevented critical logic errors in patient medication outputs and ensured smooth integration with NHS systems.
+            </p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">HR App (Onboarding, Payroll, Leave Workflows)</span>
+                <span class="project-role">Functional Testing</span>
+            </div>
+            <div class="tech-stack">Stack: Dynamics 365, Power Automate, Functional Testing, Payroll Logic</div>
+            <p class="star-method">
+                <strong>Situation:</strong> The HR application included critical modules for onboarding, payroll, leave management, and workflow approvals.<br><br>
+                <strong>Task:</strong> Execute functional and regression testing to ensure complex payroll calculations and multi-step leave approval workflows functioned correctly across multiple user roles.<br><br>
+                <strong>Action:</strong> Authored detailed test cases and performed extensive testing on business logic within the Power Platform and Dynamics 365 environment.<br><br>
+                <strong>Result:</strong> Ensured the integrity of sensitive HR processes, contributing to the successful launch of complex, business-critical modules.
+            </p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Employee Connect (Self-Service Portals)</span>
+                <span class="project-role">Functional Testing</span>
+            </div>
+            <div class="tech-stack">Stack: Power Platform, Dynamics 365, User Profile Management</div>
+            <p class="star-method">
+                <strong>Situation:</strong> The platform needed a reliable self-service feature set, allowing employees to manage personal profiles, view leave balances, check payroll history, and track appraisal status.<br><br>
+                <strong>Task:</strong> Validate the self-service features to ensure data accuracy, proper CRUD (Create, Read, Update, Delete) operations on profiles, and verification of calculated data (like leave days).<br><br>
+                <strong>Action:</strong> Executed functional, integration, and UI testing to confirm that employee updates were accurately reflected across the system. Specifically tested role-based views for payroll and appraisal access.<br><br>
+                <strong>Result:</strong> Guaranteed the integrity and security of the self-service modules, allowing employees to trust the platform for managing their sensitive personal and professional data.
+            </p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Issue Tracker & Role-Based Access</span>
+                <span class="project-role">Dynamics 365 Project</span>
+            </div>
+            <div class="tech-stack">Stack: Dynamics 365, Azure DevOps, Role-Based Access Control (RBAC)</div>
+            <p class="star-method">
+                <strong>Situation:</strong> A custom application was built to handle internal ticket creation and issue logging for enterprise support teams.<br><br>
+                <strong>Task:</strong> Ensure that the system correctly validated ticket creation workflows and strictly enforced role-based access permissions.<br><br>
+                <strong>Action:</strong> Designed and executed test cases focused on security matrices, verifying that standard users could not access or modify tickets assigned to administrator roles. Monitored defect logging and resolution within Azure DevOps.<br><br>
+                <strong>Result:</strong> Successfully verified the security model, ensuring data privacy and correct workflow routing for all support tickets.
+            </p>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Athan+ Mobile App (iOS & Android)</span>
+                <span class="project-role">Mobile QA</span>
+            </div>
+            <div class="tech-stack">Stack: Android, iOS, Jira, Manual & Functional Testing</div>
+            <p class="star-method">
+                <strong>Situation:</strong> The core Athan+ mobile application required extensive testing across two major operating systems (Android and iOS) to ensure prayer time accuracy and feature reliability.<br><br>
+                <strong>Task:</strong> Verify crucial features including prayer time calculation, mosque locator, Qibla direction, and widget functionality.<br><br>
+                <strong>Action:</strong> Executed detailed functional, UI/UX, and regression tests across various device resolutions. Logged defects in Jira and performed rigorous cross-device performance testing to ensure a smooth user experience.<br><br>
+                <strong>Result:</strong> Successfully launched new versions with improved performance and verified the consistency of critical religious features across both major mobile platforms.
+            </p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Athan Frame & Al-Iqamah Display Systems</span>
+                <span class="project-role">Data Sync QA</span>
+            </div>
+            <div class="tech-stack">Stack: Mobile-Web Sync, Data Verification, Real-Time Updates</div>
+            <p class="star-method">
+                <strong>Situation:</strong> Ensuring real-time, accurate display of mosque event updates and prayer timings across integrated devices and web-synced frames (Athan Frame and Al-Iqamah).<br><br>
+                <strong>Task:</strong> Verify the accuracy of masjid timing, event updates, and the integrity of data synchronization between mobile controls and the physical display units.<br><br>
+                <strong>Action:</strong> Designed end-to-end test cases for data input (mobile) to data output (frame display), focusing heavily on latency and synchronization failures under various network conditions.<br><br>
+                <strong>Result:</strong> Maintained high data accuracy and reliability, ensuring the community receives timely and correct event and prayer information.
+            </p>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">Masjidal TV App (Smart TV Compatibility)</span>
+                <span class="project-role">Cross-Platform Specialist</span>
+            </div>
+            <div class="tech-stack">Stack: Smart TV Compatibility, UI/UX, Cross-Device Testing</div>
+            <p class="star-method">
+                <strong>Situation:</strong> The development of a live prayer time display application required testing across various smart TV models and operating systems.<br><br>
+                <strong>Task:</strong> Validate compatibility, display integrity, and functionality of the live prayer time display across different TV models and screen resolutions.<br><br>
+                <strong>Action:</strong> Performed compatibility matrix testing and confirmed smooth performance and UI consistency of the application on multiple smart TV platforms.<br><br>
+                <strong>Result:</strong> Successfully verified compatibility and deployment across the target range of smart TV hardware, expanding the product's reach.
+            </p>
+        </div>
+
+    </section>
+
+    <section class="cert-section">
+        <h2>Certifications</h2>
+        <div class="cert-badge">
+            🏆 Microsoft Certified: <strong>PL-200 Power Platform Functional Consultant Associate</strong>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="contact-info">
+            <h3>Ready to improve your software quality?</h3>
+            <p>Email: <a href="mailto:hashimbilal160@gmail.com">hashimbilal160@gmail.com</a></p>
+            <p>Phone: 0349-5223046</p>
+        </div>
+        <p>&copy; 2025 Hashim Bilal. Built with code, tested with precision.</p>
+    </footer>
+
+</body>
+</html>
